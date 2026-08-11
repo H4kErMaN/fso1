@@ -1,0 +1,21 @@
+# Riippuvuudet
+node_modules
+
+# Ympäristömuuttujat (älä committaa oikeita salaisuuksia!)
+.env
+.env.local
+.env.*.local
+
+# Buildit
+dist
+dist-ssr
+
+# Lokit
+*.log
+npm-debug.log*
+
+# Editorit / käyttöjärjestelmä
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
