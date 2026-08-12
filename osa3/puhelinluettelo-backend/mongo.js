@@ -7,6 +7,8 @@ if (process.argv.length < 3) {
 
 const password = process.argv[2]
 
+// KORVAA seuraavan URLin käyttäjätunnus, salasana (jätetään pois merkkijonona)
+// ja klusterin osoite omillasi Mongo Atlaksesta
 const url =
   `mongodb+srv://username:${password}@cluster0.xxxxx.mongodb.net/phonebookApp?retryWrites=true&w=majority`
 

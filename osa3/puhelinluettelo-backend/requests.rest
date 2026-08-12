@@ -5,16 +5,13 @@ GET http://localhost:3001/api/persons
 GET http://localhost:3001/info
 
 ### Hae yksittäinen henkilö
-GET http://localhost:3001/api/persons/2
+GET http://localhost:3001/api/persons/507f1f77bcf86cd799439011
 
 ### Hae olematon henkilö (odotettu vastaus: 404)
-GET http://localhost:3001/api/persons/999
+GET http://localhost:3001/api/persons/000000000000000000000000
 
-### Poista henkilö (odotettu vastaus: 204)
-DELETE http://localhost:3001/api/persons/2
-
-### Tarkista poiston jälkeen (odotettu vastaus: 404)
-GET http://localhost:3001/api/persons/2
+### Väärän muotoinen id (odotettu vastaus: 400)
+GET http://localhost:3001/api/persons/xyz
 
 ### Lisää uusi henkilö
 POST http://localhost:3001/api/persons
@@ -33,19 +30,23 @@ Content-Type: application/json
   "number": "045-1234567"
 }
 
-### Lisäys ilman numeroa (odotettu vastaus: 400)
+### Lisäys liian lyhyellä nimellä (odotettu vastaus: 400)
 POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 {
-  "name": "Kalle Kukkonen"
+  "name": "Ab",
+  "number": "045-1234567"
 }
 
-### Lisäys jo olemassa olevalla nimellä (odotettu vastaus: 400)
-POST http://localhost:3001/api/persons
+### Poista henkilö (odotettu vastaus: 204)
+DELETE http://localhost:3001/api/persons/507f1f77bcf86cd799439011
+
+### Päivitä henkilön numero
+PUT http://localhost:3001/api/persons/507f1f77bcf86cd799439011
 Content-Type: application/json
 
 {
   "name": "Arto Hellas",
-  "number": "045-0000000"
+  "number": "045-9999999"
 }
