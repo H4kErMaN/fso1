@@ -1,0 +1,52 @@
+### Hae kaikki blogit (populoituine käyttäjätietoineen)
+GET http://localhost:3003/api/blogs
+
+### Hae kaikki käyttäjät (populoituine blogeineen)
+GET http://localhost:3003/api/users
+
+### Luo uusi käyttäjä
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "username": "mluukkai",
+  "name": "Matti Luukkainen",
+  "password": "salainen"
+}
+
+### Kirjaudu sisään ja saa token
+# @name login
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "username": "mluukkai",
+  "password": "salainen"
+}
+
+### Lisää uusi blogi (käytä login-vastauksen tokenia)
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.token}}
+
+{
+  "title": "React patterns",
+  "author": "Michael Chan",
+  "url": "https://reactpatterns.com/",
+  "likes": 7
+}
+
+### Yritä lisätä ilman tokenia (odotettu vastaus: 401)
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+  "title": "Unauthorized attempt",
+  "author": "Nobody",
+  "url": "https://example.com",
+  "likes": 0
+}
+
+### Poista blogi (vain oma blogi)
+DELETE http://localhost:3003/api/blogs/ID_TÄHÄN
+Authorization: Bearer {{login.response.body.token}}
